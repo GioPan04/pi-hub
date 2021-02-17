@@ -1,6 +1,8 @@
 # pi_hub
 
-A new Flutter project.
+A Google Home Hub clone built in Flutter that runs on [flutter-pi](https://github.com/ardera/flutter-pi)
+
+![lockscreeen](https://github.com/GioPan04/pi-hub/raw/master/images/lockscreen.png)
 
 ## Getting Started
 
