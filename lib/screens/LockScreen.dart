@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pi_hub/widgets/LockScreen/BackgroundImage.dart';
 import 'package:pi_hub/widgets/LockScreen/LockTime.dart';
+import 'package:pi_hub/widgets/LockScreen/LockWeather.dart';
 
 
 class LockScreen extends StatefulWidget {
@@ -20,7 +21,12 @@ class _LockScreenState extends State<LockScreen> {
             bottom: 10,
             left: 10,
             child: LockTime()
-          )
+          ),
+          Positioned(
+            bottom: 10,
+            right: 10,
+            child: LockWeather()
+          ),
         ],
       )
     );

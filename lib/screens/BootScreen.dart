@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pi_hub/repositories/PeriodicImageProvider.dart';
 import 'package:pi_hub/repositories/TimeProvider.dart';
+import 'package:pi_hub/repositories/WeatherProvider.dart';
 import 'package:provider/provider.dart';
 
 class BootScreen extends StatefulWidget {
@@ -21,6 +22,7 @@ class _BootScreenState extends State<BootScreen> {
 
     Provider.of<TimeProvider>(context, listen: false).init();
     Provider.of<PeriodicImageProvider>(context, listen: false).init();
+    Provider.of<WeatherProvider>(context, listen: false).init('florence');
 
     // Example
     await Future.delayed(Duration(seconds: 3));
