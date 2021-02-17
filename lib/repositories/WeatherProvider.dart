@@ -15,7 +15,7 @@ class WeatherProvider with ChangeNotifier {
       _weather = data;
       notifyListeners();
     } catch (e) {
-      debugPrint("An error occuring during download the background image");
+      debugPrint("An error occuring during fetch of the weather");
       debugPrint(e);
     }
   }
