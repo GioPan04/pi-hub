@@ -20,7 +20,7 @@ class _BootScreenState extends State<BootScreen> {
     debugPrint("Booting PiHub...");
 
     // TODO: Check if the app was previusly configured
-    if(true) return Navigator.pushNamed(context, 'setup');
+    if(!true) return Navigator.pushNamed(context, 'setup');
     
     // Do some work
 

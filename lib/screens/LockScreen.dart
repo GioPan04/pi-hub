@@ -17,6 +17,7 @@ class _LockScreenState extends State<LockScreen> {
       child: Stack(
         children: [
           LockBackgroundImage(),
+          Positioned.fill(child: DecoratedBox(decoration: BoxDecoration(color: Colors.black38))),
           Positioned(
             bottom: 10,
             left: 10,
