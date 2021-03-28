@@ -1,6 +1,6 @@
 class WeatherData {
   final String location;
-  final double temp;
+  final int temp;
   final String description;
   final String icon;
 
@@ -16,7 +16,7 @@ class WeatherData {
 
   factory WeatherData.fromJSON(Map<String,dynamic> data) => WeatherData(
     location: data["name"],
-    temp: data['main']['temp'],
+    temp: int.parse(data['main']['temp'].toString()),
     description: data['weather'][0]['description'],
     icon: data['weather'][0]['icon'],
   );

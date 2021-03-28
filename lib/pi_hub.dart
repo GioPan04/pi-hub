@@ -4,6 +4,7 @@ import 'package:pi_hub/repositories/TimeProvider.dart';
 import 'package:pi_hub/repositories/WeatherProvider.dart';
 import 'package:pi_hub/screens/BootScreen.dart';
 import 'package:pi_hub/screens/LockScreen.dart';
+import 'package:pi_hub/screens/SetupScreen.dart';
 import 'package:provider/provider.dart';
 
 class PiHubApp extends StatelessWidget {
@@ -19,7 +20,8 @@ class PiHubApp extends StatelessWidget {
         title: "Pi Hub",
         routes: {
           'boot': (context) => BootScreen(),
-          'lock': (context) => LockScreen()
+          'lock': (context) => LockScreen(),
+          'setup': (context) => SetupScreen(),
         },
         initialRoute: 'boot',
       ),

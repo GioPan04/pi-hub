@@ -16,7 +16,7 @@ class WeatherProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       debugPrint("An error occuring during fetch of the weather");
-      debugPrint(e);
+      debugPrint(e.toString());
     }
   }
 

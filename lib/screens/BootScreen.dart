@@ -18,6 +18,10 @@ class _BootScreenState extends State<BootScreen> {
 
   Future<void> _init() async {
     debugPrint("Booting PiHub...");
+
+    // TODO: Check if the app was previusly configured
+    if(true) return Navigator.pushNamed(context, 'setup');
+    
     // Do some work
 
     Provider.of<TimeProvider>(context, listen: false).init();
