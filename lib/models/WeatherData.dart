@@ -5,10 +5,10 @@ class WeatherData {
   final String icon;
 
   WeatherData({
-    this.location,
-    this.temp,
-    this.description,
-    this.icon
+    required this.location,
+    required this.temp,
+    required this.description,
+    required this.icon
   });
 
   String get iconUrl => "https://openweathermap.org/img/wn/$icon@2x.png";

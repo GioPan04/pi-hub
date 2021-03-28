@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pi_hub/models/WeatherData.dart';
 import 'package:pi_hub/repositories/WeatherProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -8,14 +9,18 @@ class LockWeather extends StatelessWidget {
     return DefaultTextStyle(
       style: TextStyle(color: Colors.white),
       child: Consumer<WeatherProvider>(
-        builder: (context, data, _) => Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(data.weather.localizedTemp, style: TextStyle(fontSize: 40),),
-            Text(data.weather.description, style: TextStyle(fontSize: 20),),
-            Image.network(data.weather.iconUrl),
-          ],
-        ),
+        builder: (context, state, _) {
+          final WeatherData? data = state.weather;
+          if(data == null) return Container();
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(data.localizedTemp, style: TextStyle(fontSize: 40),),
+              Text(data.description, style: TextStyle(fontSize: 20),),
+              Image.network(data.iconUrl),
+            ],
+          );
+        },
       ),
     );
   }

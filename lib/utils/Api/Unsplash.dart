@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 class UnsplashApi {
 
   /// Returns a random image from unsplash
-  static Future<List<int>> randomImage({int width, int height, int collection}) async {
+  static Future<List<int>> randomImage({int? width, int? height, int? collection}) async {
     // If no params are passed, use default ones
     width ??= 1920;
     height ??= 1080;

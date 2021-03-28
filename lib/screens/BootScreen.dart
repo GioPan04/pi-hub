@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class BootScreen extends StatefulWidget {
 
   /// The bootscreen for PiHub
-  const BootScreen({Key key}) : super(key: key);
+  const BootScreen({Key? key}) : super(key: key);
 
 
   @override
@@ -20,7 +20,9 @@ class _BootScreenState extends State<BootScreen> {
     debugPrint("Booting PiHub...");
 
     // TODO: Check if the app was previusly configured
-    if(!true) return Navigator.pushNamed(context, 'setup');
+    if(!true) {
+      Navigator.pushNamed(context, 'setup');
+    }
     
     // Do some work
 
@@ -39,7 +41,7 @@ class _BootScreenState extends State<BootScreen> {
     super.initState();
 
     // When the first frame of the screen is rendered start loading
-    WidgetsBinding.instance.addPostFrameCallback((_) => _init());
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _init());
   }
 
   @override

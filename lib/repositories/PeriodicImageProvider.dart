@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:pi_hub/utils/Api/Unsplash.dart';
 
 class PeriodicImageProvider with ChangeNotifier {
-  List<int> _bgPic;
-  List<int> get backgroundPicture => _bgPic;
+  List<int>? _bgPic;
+  List<int>? get backgroundPicture => _bgPic;
 
   Future<void> updateBg() async {
     try {
@@ -14,7 +14,7 @@ class PeriodicImageProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       debugPrint("An error occuring during download the background image");
-      debugPrint(e);
+      debugPrint(e.toString());
     }
   }
 

@@ -6,8 +6,8 @@ import 'package:pi_hub/utils/Api/OpenWeatherMap.dart';
 
 class WeatherProvider with ChangeNotifier {
   
-  WeatherData _weather;
-  WeatherData get weather => _weather;
+  WeatherData? _weather;
+  WeatherData? get weather => _weather;
 
   Future<void> updateWeather(String location) async {
     try {
