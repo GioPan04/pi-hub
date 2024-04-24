@@ -2,5 +2,5 @@
 
 ## Todo
 
- - [] Home Assistant integration
- - [] Immich integration
+ - [ ] Home Assistant integration
+ - [ ] Immich integration
