@@ -19,7 +19,7 @@ class ScreensaverPage extends ConsumerWidget {
               bottom: 0,
               left: 20,
               child: BigClock(),
-            )
+            ),
           ],
         ),
       ),
