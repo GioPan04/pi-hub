@@ -15,13 +15,33 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    PlayerRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PlayerPage(),
+      );
+    },
     ScreensaverRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ScreensaverPage(),
       );
-    }
+    },
   };
+}
+
+/// generated route for
+/// [PlayerPage]
+class PlayerRoute extends PageRouteInfo<void> {
+  const PlayerRoute({List<PageRouteInfo>? children})
+      : super(
+          PlayerRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PlayerRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

@@ -37,9 +37,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_riverpod: ^2.5.1
   auto_route: ^7.9.2
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   dio: ^5.4.3+1
   intl: ^0.19.0
+  dbus: ^0.7.10
+  freezed_annotation: ^2.4.1
+  squiggly_slider: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -52,8 +55,9 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   auto_route_generator: ^7.3.2
-  build_runner: ^2.4.9
-  json_serializable: ^6.7.1
+  build_runner: ^2.4.11
+  json_serializable: ^6.8.0
+  freezed: ^2.5.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
