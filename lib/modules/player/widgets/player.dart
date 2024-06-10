@@ -37,50 +37,89 @@ class Player extends ConsumerWidget {
     final player = ref.read(playerServiceProvider);
     final art = ref.watch(_playerArtProvider);
     final colorScheme = ref.watch(_playerColorSchemeProvider).value;
-    final originalTheme = Theme.of(context);
+    final theme = Theme.of(context);
 
     return switch (metadata) {
       AsyncData(:final value) => value.metadata != null
           ? Theme(
               data: ThemeData(
-                colorScheme: colorScheme ?? originalTheme.colorScheme,
+                colorScheme: colorScheme ?? theme.colorScheme,
               ),
               child: Builder(builder: (context) {
                 return DecoratedBox(
                   decoration:
                       BoxDecoration(color: colorScheme?.primaryContainer),
                   child: Center(
-                    child: Row(
-                      children: [
-                        art.value != null
-                            ? Image(image: art.value!, width: 256)
-                            : const SizedBox.shrink(),
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(value.metadata!.title ?? 'No title'),
-                              Text(value.metadata!.artists?.join(', ') ??
-                                  'No artists'),
-                              value.metadata!.length != null &&
-                                      value.position != null
-                                  ? PlayerSlider(
-                                      value: value.position! /
-                                          value.metadata!.length!,
-                                    )
-                                  : const SizedBox.shrink(),
-                              IconButton(
-                                icon: Icon(
-                                  value.playbackStatus == PlaybackStatus.playing
-                                      ? Icons.pause
-                                      : Icons.play_arrow,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Row(
+                        children: [
+                          art.value != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Image(image: art.value!, width: 256),
+                                )
+                              : const SizedBox.shrink(),
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 24.0,
+                                  ),
+                                  child: Text(
+                                    value.metadata!.title ?? 'No title',
+                                    style: theme.textTheme.headlineLarge,
+                                  ),
                                 ),
-                                onPressed: () => player.playPause(),
-                              )
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 24.0,
+                                  ),
+                                  child: Text(
+                                    value.metadata!.artists?.join(', ') ??
+                                        'No artists',
+                                  ),
+                                ),
+                                const SizedBox(height: 16.0),
+                                Row(children: [
+                                  const SizedBox(width: 24.0),
+                                  FloatingActionButton(
+                                    elevation: 0,
+                                    backgroundColor:
+                                        colorScheme?.onPrimaryContainer,
+                                    foregroundColor: Colors.white,
+                                    child: Icon(
+                                      value.playbackStatus ==
+                                              PlaybackStatus.playing
+                                          ? Icons.pause
+                                          : Icons.play_arrow,
+                                    ),
+                                    onPressed: () => player.playPause(),
+                                  ),
+                                  value.metadata!.length != null &&
+                                          value.position != null
+                                      ? Expanded(
+                                          child: PlayerSlider(
+                                            value: value.position! /
+                                                value.metadata!.length!,
+                                            onChanged: (pos) =>
+                                                player.setPosition(
+                                              value.metadata!.trackid!,
+                                              (pos * value.metadata!.length!)
+                                                  .toInt(),
+                                            ),
+                                          ),
+                                        )
+                                      : const SizedBox.expand(),
+                                ]),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );

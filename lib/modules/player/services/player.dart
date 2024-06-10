@@ -45,6 +45,14 @@ class PlayerService {
     return dbusRes.asInt64();
   }
 
+  Future<void> setPosition(String trackId, int position) {
+    return _object.callMethod(
+      _playerInterface,
+      'SetPosition',
+      [DBusObjectPath(trackId), DBusInt64(position)],
+    );
+  }
+
   Future<void> playPause() {
     return _object.callMethod(_playerInterface, 'PlayPause', []);
   }

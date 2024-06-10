@@ -3,9 +3,11 @@ import 'package:squiggly_slider/slider.dart';
 
 class PlayerSlider extends StatefulWidget {
   final double value;
+  final void Function(double pos)? onChanged;
 
   const PlayerSlider({
     required this.value,
+    this.onChanged,
     super.key,
   });
 
@@ -51,7 +53,7 @@ class _PlayerSliderState extends State<PlayerSlider>
             squiggleWavelength: 7.5,
             squiggleSpeed: 0.075,
             value: _controller.value,
-            onChanged: (_) {},
+            onChanged: (d) => widget.onChanged?.call(d),
           );
         },
       ),

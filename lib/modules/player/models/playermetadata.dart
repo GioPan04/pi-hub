@@ -11,6 +11,7 @@ class PlayerMetadata with _$PlayerMetadata {
     String? album,
     String? artUrl,
     int? length,
+    String? trackid,
   }) = _PlayerMetadata;
 
   factory PlayerMetadata.fromDBus(Map<String, DBusValue> data) {
@@ -20,6 +21,7 @@ class PlayerMetadata with _$PlayerMetadata {
       album: data['xesam:album']?.asString(),
       artUrl: data['mpris:artUrl']?.asString(),
       length: data['mpris:length']?.asInt64(),
+      trackid: data['mpris:trackid']?.asObjectPath().asString(),
     );
   }
 }
