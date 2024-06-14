@@ -29,10 +29,9 @@ final playerProvider = StreamProvider<PlayerState>((ref) async* {
 
   final timer = Timer.periodic(
     const Duration(seconds: 1),
-    (_) => update().then(
-      (data) => ref.state = AsyncData(data),
-      onError: (e, s) => ref.state = AsyncError(e, s),
-    ),
+    (_) async {
+      ref.state = await AsyncValue.guard(update);
+    },
   );
 
   ref.onDispose(() => timer.cancel());

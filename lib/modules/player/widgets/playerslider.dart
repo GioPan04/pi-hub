@@ -44,7 +44,12 @@ class _PlayerSliderState extends State<PlayerSlider>
     final theme = Theme.of(context);
 
     return SliderTheme(
-      data: theme.sliderTheme.copyWith(trackHeight: 2),
+      data: theme.sliderTheme.copyWith(
+        trackHeight: 2,
+        inactiveTrackColor: theme.colorScheme.onPrimaryContainer.withOpacity(
+          0.2,
+        ),
+      ),
       child: AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {

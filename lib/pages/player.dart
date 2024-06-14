@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:pi_hub/modules/player/widgets/player.dart';
+import 'package:pi_hub/modules/player/widgets/large_player.dart';
 
 @RoutePage(name: 'PlayerRoute')
 class PlayerPage extends StatelessWidget {
@@ -9,7 +9,7 @@ class PlayerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Player(),
+      body: LargePlayer(),
     );
   }
 }

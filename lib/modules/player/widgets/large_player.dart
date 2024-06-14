@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pi_hub/modules/player/models/playbackstatus.dart';
 import 'package:pi_hub/modules/player/providers/player.dart';
 import 'package:pi_hub/modules/player/widgets/playerslider.dart';
-import 'package:squiggly_slider/slider.dart';
 
 final _playerArtProvider = FutureProvider<NetworkImage?>((ref) async {
   final artUrl = await ref.watch(
@@ -28,8 +27,8 @@ final _playerColorSchemeProvider = FutureProvider<ColorScheme?>((ref) async {
   return a;
 });
 
-class Player extends ConsumerWidget {
-  const Player({super.key});
+class LargePlayer extends ConsumerWidget {
+  const LargePlayer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -65,39 +64,59 @@ class Player extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 24.0,
-                                  ),
-                                  child: Text(
-                                    value.metadata!.title ?? 'No title',
-                                    style: theme.textTheme.headlineLarge,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 24.0,
-                                  ),
-                                  child: Text(
-                                    value.metadata!.artists?.join(', ') ??
-                                        'No artists',
-                                  ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 24.0,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              value.metadata!.title ??
+                                                  'No title',
+                                              style:
+                                                  theme.textTheme.headlineLarge,
+                                            ),
+                                            Text(
+                                                value.metadata!.artists
+                                                        ?.join(', ') ??
+                                                    'No artists',
+                                                style: theme
+                                                    .textTheme.bodyMedium
+                                                    ?.copyWith(
+                                                        color: theme.textTheme
+                                                            .bodyMedium!.color!
+                                                            .withOpacity(0.8))),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    FloatingActionButton.large(
+                                      elevation: 0,
+                                      backgroundColor:
+                                          colorScheme?.onPrimaryContainer,
+                                      foregroundColor: Colors.white,
+                                      child: Icon(
+                                        value.playbackStatus ==
+                                                PlaybackStatus.playing
+                                            ? Icons.pause
+                                            : Icons.play_arrow,
+                                      ),
+                                      onPressed: () => player.playPause(),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 16.0),
                                 Row(children: [
                                   const SizedBox(width: 24.0),
-                                  FloatingActionButton(
-                                    elevation: 0,
-                                    backgroundColor:
-                                        colorScheme?.onPrimaryContainer,
-                                    foregroundColor: Colors.white,
-                                    child: Icon(
-                                      value.playbackStatus ==
-                                              PlaybackStatus.playing
-                                          ? Icons.pause
-                                          : Icons.play_arrow,
-                                    ),
-                                    onPressed: () => player.playPause(),
+                                  IconButton(
+                                    color: colorScheme?.onPrimaryContainer,
+                                    icon: const Icon(Icons.skip_previous),
+                                    onPressed: () => player.previous(),
                                   ),
                                   value.metadata!.length != null &&
                                           value.position != null
@@ -114,6 +133,11 @@ class Player extends ConsumerWidget {
                                           ),
                                         )
                                       : const SizedBox.expand(),
+                                  IconButton(
+                                    color: colorScheme?.onPrimaryContainer,
+                                    icon: const Icon(Icons.skip_next),
+                                    onPressed: () => player.next(),
+                                  ),
                                 ]),
                               ],
                             ),
